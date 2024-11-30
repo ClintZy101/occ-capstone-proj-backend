@@ -1,2 +1,3 @@
-config/serviceKeyAccount.json
+backend/config/serviceKeyAccount.json
 .env
+node_modules
