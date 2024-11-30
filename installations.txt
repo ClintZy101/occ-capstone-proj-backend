@@ -1,0 +1,10 @@
+first: npm init -y
+
+Suggested Packages Recap:
+Core: express
+Middleware: body-parser, cors, helmet, morgan, dotenv
+Database: mongoose or sequelize
+Security: bcrypt, express-validator, jsonwebtoken
+Templating (optional): ejs or pug
+Real-time (optional): socket.io
+Dev Tools: nodemon
