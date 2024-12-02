@@ -10,21 +10,23 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5555;
 
-// Middleware
-const allowedOrigins = ["http://localhost:5173", "https://crumblite.netlify.app"];
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // Allow request
-      } else {
-        callback(new Error("Not allowed by CORS")); // Block request
-      }
-    },
-    methods: ["GET", "POST", "PATCH","PUT", "DELETE"], // Allowed HTTP methods
-    credentials: true, // Allow cookies, authorization headers, etc.
-  })
-);
+// // Middleware
+// const allowedOrigins = ["http://localhost:5173", "http://localhost:5174", "https://crumblite.netlify.app"];
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true); // Allow request
+//       } else {
+//         callback(new Error("Not allowed by CORS")); // Block request
+//       }
+//     },
+//     methods: ["GET", "POST", "PATCH","PUT", "DELETE"], // Allowed HTTP methods
+//     credentials: true, // Allow cookies, authorization headers, etc.
+//   })
+// );
+
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
