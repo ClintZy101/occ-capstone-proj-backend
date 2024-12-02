@@ -11,7 +11,7 @@ const router = Router();
 
 router.post('/',authenticateUser, createReview);
 router.put('/:id',authenticateUser, updateReview);
-router.delete('/',authenticateUser, deleteReview);
+router.delete('/:id',authenticateUser, deleteReview);
 router.get('/',getAllReviews);
 
 export default router
