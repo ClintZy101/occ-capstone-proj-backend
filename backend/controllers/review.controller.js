@@ -6,8 +6,8 @@ export const createReview = async (req, res) => {
   if (
     !review.product_id ||
     !review.product_name ||
-    !review.email ||
-    !review.review
+    !review.user_email ||
+    !review.product_review
   ) {
     return res.status(400).json({
       success: false,
@@ -35,33 +35,33 @@ export const getAllReviews = async (req, res) => {
   }
 };
 
-export const getReviewsByProductId = async (req, res) => {
-  const { productId } = req.params; // Extract product ID from the request parameters
+// export const getReviewsByProductId = async (req, res) => {
+//   const { productId } = req.params; // Extract product ID from the request parameters
 
-  try {
-    // Fetch reviews matching the productId
-    const reviews = await Review.find({ productId });
+//   try {
+//     // Fetch reviews matching the productId
+//     const reviews = await Review.find({ productId });
 
-    // Check if reviews exist for the given productId
-    if (!reviews.length) {
-      return res.status(404).json({
-        success: false,
-        message: `No reviews found for product ID: ${productId}`,
-      });
-    }
+//     // Check if reviews exist for the given productId
+//     if (!reviews.length) {
+//       return res.status(404).json({
+//         success: false,
+//         message: `No reviews found for product ID: ${productId}`,
+//       });
+//     }
 
-    res.status(200).json({ success: true, data: reviews });
-  } catch (error) {
-    console.error(
-      `Error fetching reviews for product ID ${productId}:`,
-      error.message
-    );
-    res.status(500).json({ success: false, message: "Server Error" });
-  }
-};
+//     res.status(200).json({ success: true, data: reviews });
+//   } catch (error) {
+//     console.error(
+//       `Error fetching reviews for product ID ${productId}:`,
+//       error.message
+//     );
+//     res.status(500).json({ success: false, message: "Server Error" });
+//   }
+// };
 
 export const updateReview = async (req, res) => {
-  const { id } = req.params;
+  const {  id } = req.params;
   const review = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res

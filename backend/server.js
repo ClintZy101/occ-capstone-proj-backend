@@ -21,7 +21,7 @@ app.use(
         callback(new Error("Not allowed by CORS")); // Block request
       }
     },
-    methods: ["GET", "POST", "PATCH", "DELETE"], // Allowed HTTP methods
+    methods: ["GET", "POST", "PATCH","PUT", "DELETE"], // Allowed HTTP methods
     credentials: true, // Allow cookies, authorization headers, etc.
   })
 );
