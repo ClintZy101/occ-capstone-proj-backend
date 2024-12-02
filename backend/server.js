@@ -25,8 +25,27 @@ const PORT = process.env.PORT || 5555;
 //     credentials: true, // Allow cookies, authorization headers, etc.
 //   })
 // );
+const allowedOrigins = [
+  "http://localhost:5173", // Local development
+  "https://crumblite.netlify.app", // Deployed frontend
+];
 
-app.use(cors({ origin: '*' }));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
+    credentials: true, // Allow cookies or Authorization headers
+  })
+);
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
