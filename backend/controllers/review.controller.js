@@ -35,6 +35,17 @@ export const getAllReviews = async (req, res) => {
   }
 };
 
+export const getUserReviews = async (req, res) => {
+  const userEmail = req.user.email; // Extracted from token after auth middleware
+  try {
+    const reviews = await Review.find({ user_email: userEmail });
+    res.status(200).json({ success: true, data: reviews });
+  } catch (error) {
+    console.error("Error in getUserReviews:", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
 // export const getReviewsByProductId = async (req, res) => {
 //   const { productId } = req.params; // Extract product ID from the request parameters
 
