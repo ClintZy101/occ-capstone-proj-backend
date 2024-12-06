@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import reviewRoutes from "./routes/review.route.js";
 import checkoutRoutes from "./routes/checkout.route.js";
+import stripeRoutes from "./routes/stripe.route.js"
 import cors from "cors";
 
 dotenv.config();
@@ -10,21 +11,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5555;
 
-// // Middleware
-// const allowedOrigins = ["http://localhost:5173", "http://localhost:5174", "https://crumblite.netlify.app"];
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true); // Allow request
-//       } else {
-//         callback(new Error("Not allowed by CORS")); // Block request
-//       }
-//     },
-//     methods: ["GET", "POST", "PATCH","PUT", "DELETE"], // Allowed HTTP methods
-//     credentials: true, // Allow cookies, authorization headers, etc.
-//   })
-// );
 const allowedOrigins = [
   "http://localhost:5173", // Local development
   "https://crumblite.netlify.app", // Deployed frontend
@@ -55,6 +41,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/checkout", checkoutRoutes);
+app.use("/api/stripe", stripeRoutes);
 
 // Connect to database and start server
 app.listen(PORT, () => {
