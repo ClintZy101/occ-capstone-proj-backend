@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5555;
 
 const allowedOrigins = [
   "http://localhost:5173", // Local development
-  "https://crumblite.netlify.app", // Deployed frontend
+  "https://crumbly.netlify.app", // Deployed frontend
 ];
 
 app.use(
